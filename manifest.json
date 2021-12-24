@@ -1,0 +1,6 @@
+{
+  "name": "movie",
+  "short_name": "movie",
+  "start_url": "/",
+  "display": "standalone"
+}

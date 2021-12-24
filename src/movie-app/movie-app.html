@@ -1,0 +1,53 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./components/nav-bar/navbar-app.html">
+<link rel="import" href="./components/body/body-app.html">
+
+<dom-module id="movie-app">
+  <template>
+    <style>
+   .container-movie{
+     display: flex;
+     max-width: 1280px;
+     padding: 10px;
+     margin: auto;
+     min-height: 100vh;
+     flex-direction: column;
+   }
+
+   navbar-app{
+     width:100%;
+     height: 50px;
+   }
+
+   body-app{
+     width:100%;
+   }
+    </style>
+    <!-- <h2>Hello [[prop1]]!</h2> -->
+    <div class="container-movie">
+      <navbar-app></navbar-app>
+      <body-app></body-app>
+    </div>
+    
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MovieApp extends Polymer.Element {
+      static get is() { return 'movie-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'movie-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MovieApp.is, MovieApp);
+  </script>
+</dom-module>

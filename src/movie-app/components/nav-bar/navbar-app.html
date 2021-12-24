@@ -1,0 +1,38 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="navbar-app">
+    <template>
+      <style>
+          .container-navbar{
+              display: flex;
+              height: 100%;
+              background-color: black;
+              color:white;
+          }
+
+      </style>
+     <div class="container-navbar">assfsd</div>
+      
+    </template>
+  
+    <script>
+      /**
+       * @customElement
+       * @polymer
+       */
+      class NavBarApp extends Polymer.Element {
+        static get is() { return 'navbar-app'; }
+        static get properties() {
+          return {
+            prop1: {
+              type: String,
+              value: 'navbar-app'
+            }
+          };
+        }
+      }
+  
+      customElements.define(NavBarApp.is, NavBarApp);
+    </script>
+  </dom-module>
+  
