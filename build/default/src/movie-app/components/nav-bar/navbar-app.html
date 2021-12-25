@@ -1,6 +1,4 @@
-<link
-  rel="import"
-  href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
 
 
 
@@ -29,25 +27,25 @@
     </div>
   </template>
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class NavBarApp extends Polymer.Element {
-      static get is() {
-        return "navbar-app";
-      }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: "navbar-app",
-          },
-        };
-      }
-    }
+  <script>/**
+ * @customElement
+ * @polymer
+ */
+class NavBarApp extends Polymer.Element {
+  static get is() {
+    return "navbar-app";
+  }
 
-    customElements.define(NavBarApp.is, NavBarApp);
-  </script>
+  static get properties() {
+    return {
+      prop1: {
+        type: String,
+        value: "navbar-app"
+      }
+    };
+  }
+
+}
+
+customElements.define(NavBarApp.is, NavBarApp);</script>
 </dom-module>

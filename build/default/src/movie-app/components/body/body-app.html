@@ -1,0 +1,25 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="body-app">
+    <template>
+        <style>
+            .container-body{
+              display: flex;
+            
+          }
+
+
+
+        </style>
+        <div class="container-body"><h1>Body</h1></div>
+    </template>
+
+    <script>class BodyApp extends Polymer.Element {
+  static get is() {
+    return 'body-app';
+  }
+
+}
+
+customElements.define(BodyApp.is, BodyApp);</script>
+</dom-module>
