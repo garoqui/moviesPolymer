@@ -46,23 +46,25 @@
     
   </template>
 
-  <script>
-    /**
-     * @customElement
-     * @polymer
-     */
-    class MovieApp extends Polymer.Element {
-      static get is() { return 'movie-app'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'movie-app'
-          }
-        };
-      }
-    }
+  <script>/**
+ * @customElement
+ * @polymer
+ */
+class MovieApp extends Polymer.Element {
+  static get is() {
+    return 'movie-app';
+  }
 
-    window.customElements.define(MovieApp.is, MovieApp);
-  </script>
+  static get properties() {
+    return {
+      prop1: {
+        type: String,
+        value: 'movie-app'
+      }
+    };
+  }
+
+}
+
+window.customElements.define(MovieApp.is, MovieApp);</script>
 </dom-module>
