@@ -1,26 +1,46 @@
 <!-- <link rel="import" href="../../../../bower_components/polymer/polymer-element.html"> -->
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link
+  rel="import"
+  href="../../../../bower_components/polymer/polymer-element.html"
+/>
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="./footer-column/footer-column-app.html"></link>
 
 <dom-module id="footer-app">
     <template>
         <style>
-             .container-footer{
+            .container-footer {
               display: flex;
-             }
+            }
+          </style>
+          <footer-column-app animo=[[column1]]></footer-column-app>
+        <!-- <template is="dom-repeat" items="[[column1]]">
+          <div>[[item]]</div>
+             <div class="container-footer"><h1></h1></div> 
+          </template> -->
 
-        </style>
-        <div class="container-footer"><h1>Footer</h1></div>
-        
     </template>
+  
 
-    <script>
-        class FooterApp extends Polymer.Element{
-            static get is() {return 'footer-app';}
-    
-    
+  <script>
+    class FooterApp extends Polymer.Element {
+      static get is() {
+        return "footer-app";
+      }
+
+      static get properties() {
+        return {
+          column1: {
+            type: Array,
+            value() {
+              return [
+                 "Preguntas Frecuentes", "Inversores", "Formas de Ver","Informacion Coorporativa", "Originales de Netflix",
+              ];
+            }
+          }
         }
-        customElements.define(FooterApp.is, FooterApp);
-    </script>
+      }    }
 
-
+    customElements.define(FooterApp.is, FooterApp);
+  </script>
 </dom-module>

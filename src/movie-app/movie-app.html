@@ -2,13 +2,13 @@
 <link rel="import" href="./components/nav-bar/navbar-app.html">
 <link rel="import" href="./components/body/body-app.html">
 <link rel="import" href="./components/footer/footer-app.html">
+<link rel="import" href="./components/nav-bar/menu/menu-app.html">
 
 <dom-module id="movie-app">
   <template>
     <style>
     .container-movie{
      display: flex;
-     max-width: 1280px;
      padding: 10px;
      margin: auto;
      min-height: 100vh;
@@ -36,8 +36,15 @@
      background-color: black;
      color: white;
    }
+   /* menu-app{
+          position: fixed;
+          top:0%;
+          width: 100%;
+          height: 100vh;
+          z-index: 100000;
+          background-color: black;
+      } */
     </style>
-    <!-- <h2>Hello [[prop1]]!</h2> -->
     <div class="container-movie">
       <navbar-app></navbar-app>
       <body-app></body-app>

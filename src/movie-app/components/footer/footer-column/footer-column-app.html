@@ -1,0 +1,28 @@
+<link rel="import" href="../../../../../bower_components/polymer/polymer-element.html"></link>
+
+
+<dom-module id="footer-column-app">
+    <template>
+        <div>[[animo]]</div>
+    </template>
+
+    <script>
+        class FooterColumn extends Polymer.Element{
+            static get is() { return "footer-column-app"}
+
+            static get properties() {
+    return {
+      animo: {
+        type: String,
+        value: 'feliz'
+      }
+    }
+  }
+
+
+
+        }
+
+        customElements.define(FooterColumn.is, FooterColumn)
+    </script>
+</dom-module>
