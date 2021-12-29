@@ -11,13 +11,19 @@
         <style>
             .container-footer {
               display: flex;
+              width: 100%;
+              
+            }
+
+            footer-column-app{
+              width : 23%;
             }
           </style>
-          <footer-column-app animo=[[column1]]></footer-column-app>
-        <!-- <template is="dom-repeat" items="[[column1]]">
-          <div>[[item]]</div>
-             <div class="container-footer"><h1></h1></div> 
-          </template> -->
+          <footer-column-app lista=[[column1]]></footer-column-app>
+          <footer-column-app lista=[[column2]]></footer-column-app>
+          <footer-column-app lista=[[column3]]></footer-column-app>
+          <footer-column-app lista=[[column4]]></footer-column-app>
+
 
     </template>
   
@@ -35,6 +41,30 @@
             value() {
               return [
                  "Preguntas Frecuentes", "Inversores", "Formas de Ver","Informacion Coorporativa", "Originales de Netflix",
+              ];
+            }
+          },
+          column2: {
+            type: Array,
+            value() {
+              return [
+                 "Centro de ayuda", "Empleo", "Terminos de uso","Contactenos"
+              ];
+            }
+          },
+          column3: {
+            type: Array,
+            value() {
+              return [
+                 "Cuenta", "Cargar tarjetas seguro", "Privacidad","Politica de Seguridad"
+              ];
+            }
+          },
+          column4: {
+            type: Array,
+            value() {
+              return [
+                 "Zona de Prensa", "Comprar tarjetas seguro", "Preferencias de Cookies","Anuncios legales"
               ];
             }
           }

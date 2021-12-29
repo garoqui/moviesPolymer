@@ -1,9 +1,34 @@
 <link rel="import" href="../../../../../bower_components/polymer/polymer-element.html"></link>
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
 
 <dom-module id="footer-column-app">
     <template>
-        <div>[[animo]]</div>
+      <style>
+        .container-column{
+          display: flex;
+          padding:10px;
+          width:100%;
+        }
+
+        li{
+      list-style: none;
+      line-height: 40px;
+      cursor: pointer;
+    }
+      </style>
+        <div class="container-column">
+          <ul>
+            <template is="dom-repeat" items="[[lista]]">
+              <li>
+                [[item]]
+              </li>
+
+            </template>
+            
+          </ul>
+          
+        </div>
     </template>
 
     <script>
@@ -12,8 +37,8 @@
 
             static get properties() {
     return {
-      animo: {
-        type: String,
+      lista: {
+        type: Array,
         value: 'feliz'
       }
     }
