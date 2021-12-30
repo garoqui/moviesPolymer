@@ -1,0 +1,105 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+
+<!-- components -->
+<link rel="import" href="../card/card-app.html">
+
+<dom-module id="news-app">
+    <template >
+        <style>
+            .container-news{
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                width:100%;          
+            }
+
+            .container-news-cards{
+                display: flex;
+                width: 100%;
+                justify-content: space-between;                
+            }
+
+            card-app{
+                width:18%;
+            }
+        </style>
+
+        <div class="container-news">
+        <h1>Novedades</h1>
+        <div class="container-news-cards">
+            <template is="dom-repeat" items=[[listMovies]]>
+                <card-app movie=[[item]] ></card-app>
+            </template>
+            
+        </div>
+
+        </div>
+    
+        
+    
+    
+    </template>
+
+    <script>
+        class NewsApp extends Polymer.Element{
+
+            static get is(){return "news-app"}
+
+            static get properties(){
+                    return {
+                        image : {
+                            type : String
+                        },
+
+                        API_KEY:{
+                            type : String,
+                            value : "9f7457883812f9b2f8e3a75fb1d4c021"
+                        },
+
+                       
+
+                        MOVIESPOPULARURL : {
+                            type : String,
+                            value : ``
+                        }, 
+
+                        listMovies : {
+                            type : String,
+                            value(){
+                                return []
+                            }
+                        }
+                    }
+                }
+
+            constructor(){
+                    super()
+                    this.image = ""
+                    this.API_KEY = "9f7457883812f9b2f8e3a75fb1d4c021"
+                    this.MOVIESPOPULARURL = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=`;
+                }
+
+                async ready(){
+                    super.ready()
+                    this.listMovies = await this.fecthMovies()
+                    await console.log("Aca")
+                    await console.log(this.listMovies)
+                   
+                    
+
+                }
+
+                async fecthMovies(){
+                    const data = await fetch(this.MOVIESPOPULARURL).then(data => data.json())
+                    console.log(data)
+                    return data.results.slice(0,5)
+                }
+
+
+        }
+
+        customElements.define(NewsApp.is, NewsApp)
+    </script>
+    
+
+</dom-module>
