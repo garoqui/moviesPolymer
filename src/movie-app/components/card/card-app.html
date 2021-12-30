@@ -1,0 +1,79 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="card-app">
+    <template>
+        <style>
+            .container-card{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                
+            }
+
+            .container-card-img{
+                width: 100%;
+                min-height:80%;
+                overflow: hidden;
+                max-height: 100%;
+                border-radius: 15px;
+            }
+
+            .container-card-img img{
+                width: 100%;
+            }
+
+            .container-card-footer{
+                max-width: 100%;
+                min-height: 20%;
+                padding:5px;
+            }
+
+        </style>
+
+        <div class="container-card">
+            <div class="container-card-img">
+                   <img src="[[MOVIESIMGURLW500]][[movie.poster_path]]"/>
+            </div>
+
+            <div class="container-card-footer">
+                <h5>[[movie.title]]</h5>
+            </div>
+        </div>
+
+    </template>
+
+        <script>
+
+            class CardApp extends Polymer.Element{
+
+                
+                static get is(){ return "card-app"}
+
+                static get properties(){
+                    return {
+                        movie : {
+                            type : Object,
+                            value : {}
+                        },
+
+                        MOVIESIMGURLW500 : {
+                            type : String,
+                            value : "https://image.tmdb.org/t/p/w500/"
+                        },
+                    }
+                }
+
+                ready(){
+                    super.ready()
+                    console.log(this.movie)
+                    
+                }
+            }
+
+            customElements.define(CardApp.is, CardApp)
+
+        </script>
+
+ 
+
+</dom-module>

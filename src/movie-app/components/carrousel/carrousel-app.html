@@ -134,11 +134,8 @@
       async ready() {
         super.ready();
         let listMovies = await this.getMovies().then((res) => res);
-        console.log(listMovies.results[1]);
         let listSeries = await this.getSeries().then((res) => res);
-        console.log(listSeries.results[1]);
         this.imgActual = await this.listMovies[this.posActual].backdrop_path;
-        console.log(this.imgActual);
         this.playImages("next");
         await this.chargeCarrousel()
       }
@@ -157,26 +154,20 @@
         );
         
         this.listSeries = await RESU.results;
-        console.log("yo")
-        console.log(this.listSeries)
         return RESU;
       }
 
       chargeCarrousel(){
         let groupList = [];
         groupList = this.listMovies.concat(this.listSeries)
-        console.log(groupList)
         let resu = groupList.slice(0,2)
-        console.log(resu)
         let resu1 = groupList.reverse().slice(0,2)
-        console.log(resu1)
       }
 
       changeImage(e) {
         if (this.posActual > 0 && this.posActual < 5) {
           let direction = e.target.getAttribute("data-args");
           direction === "next" ? (this.posActual += 1) : (this.posActual -= 1);
-          console.log(this.posActual);
           this.imgActual = this.listMovies[this.posActual].backdrop_path;
         } else {
           this.posActual = 1;
@@ -188,7 +179,6 @@
           if (this.posActual >= 0 && this.posActual < 5) {
             this.imgActual = this.listMovies[this.posActual].backdrop_path;
             this.posActual += 1;
-            console.log(this.posActual);
           } else {
             this.posActual = 0;
           }
