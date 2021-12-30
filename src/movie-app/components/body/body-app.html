@@ -1,25 +1,31 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link
+  rel="import"
+  href="../../../../bower_components/polymer/polymer-element.html"
+/>
+<link rel="import" href="../carrousel/carrousel-app.html" />
 
 <dom-module id="body-app">
-    <template>
-        <style>
-            .container-body{
-              display: flex;
-            
-          }
+  <template>
+    <style>
+      .container-body {
+        display: flex;
+      }
 
+      carrousel-app{
+          height: 50vh;
+      }
+    </style>
+    <div class="container-body">
+      <carrousel-app></carrousel-app>
+    </div>
+  </template>
 
-
-        </style>
-        <div class="container-body"><h1>Body</h1></div>
-    </template>
-
-    <script>
-        class BodyApp extends Polymer.Element{
-            static get is() {return 'body-app';}
-
-
-        }
-        customElements.define(BodyApp.is, BodyApp);
-    </script>
+  <script>
+    class BodyApp extends Polymer.Element {
+      static get is() {
+        return "body-app";
+      }
+    }
+    customElements.define(BodyApp.is, BodyApp);
+  </script>
 </dom-module>
