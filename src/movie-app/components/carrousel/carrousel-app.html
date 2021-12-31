@@ -1,7 +1,4 @@
-<link
-  rel="import"
-  href="../../../../bower_components/polymer/polymer-element.html"
-/>
+<link rel="import" href="/bower_components/polymer/polymer-element.html" />
 <link
   rel="import"
   href="../../../../bower_components/polymer/lib/elements/dom-repeat.html"
@@ -19,56 +16,41 @@
       .container-carrousel-images {
         width: 100%;
         height: 100%;
-
       }
 
       .container-carrousel img {
         width: 100%;
       }
 
-      .container-controls{
+      .container-controls {
         display: flex;
-        justify-content:center;
+        justify-content: center;
         width: 100%;
         position: absolute;
         padding-top: 10px;
 
         color: white;
-        top:180px;
-
-
-     
-
+        top: 180px;
       }
-      
-      .container-controls div{
+
+      .container-controls div {
         width: 50%;
         text-align: center;
         cursor: pointer;
         font-size: 50px;
         color: white;
-
-      
       }
     </style>
 
     <div class="container-carrousel">
-      <!-- <template is="dom-repeat" items="[[listMovies]]">
-        <div><img src="[[MOVIESIMGURL]][[item.backdrop_path]]"/></div>
-      </template> -->
       <div class="container-carrousel-images">
         <img src="[[MOVIESIMGURL]][[imgActual]]" />
         <div class="container-controls">
           <div on-click="changeImage" data-args="next"><</div>
-        <div on-click="changeImage" data-args="prev">></div>
+          <div on-click="changeImage" data-args="prev">></div>
         </div>
-      
       </div>
-
-      
     </div>
-    
-    
   </template>
 
   <script>
@@ -77,7 +59,7 @@
         super();
         this.API_KEY = "9f7457883812f9b2f8e3a75fb1d4c021";
         this.MOVIESPOPULARURL = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=`;
-        this.TVPOPULARURL = `https://api.themoviedb.org/3/tv/popular?api_key=${this.API_KEY}&language=en-US&page=`
+        this.TVPOPULARURL = `https://api.themoviedb.org/3/tv/popular?api_key=${this.API_KEY}&language=en-US&page=`;
         this.listMovies = [];
         this.listSeries = [];
       }
@@ -98,8 +80,8 @@
             value: ``,
           },
 
-          TVPOPULARURL : {
-            type : String,
+          TVPOPULARURL: {
+            type: String,
             value: ``,
           },
 
@@ -137,7 +119,7 @@
         let listSeries = await this.getSeries().then((res) => res);
         this.imgActual = await this.listMovies[this.posActual].backdrop_path;
         this.playImages("next");
-        await this.chargeCarrousel()
+        await this.chargeCarrousel();
       }
 
       async getMovies() {
@@ -149,19 +131,17 @@
       }
 
       async getSeries() {
-        const RESU = await fetch(this.TVPOPULARURL).then((res) =>
-          res.json()
-        );
-        
+        const RESU = await fetch(this.TVPOPULARURL).then((res) => res.json());
+
         this.listSeries = await RESU.results;
         return RESU;
       }
 
-      chargeCarrousel(){
+      chargeCarrousel() {
         let groupList = [];
-        groupList = this.listMovies.concat(this.listSeries)
-        let resu = groupList.slice(0,2)
-        let resu1 = groupList.reverse().slice(0,2)
+        groupList = this.listMovies.concat(this.listSeries);
+        let resu = groupList.slice(0, 2);
+        let resu1 = groupList.reverse().slice(0, 2);
       }
 
       changeImage(e) {

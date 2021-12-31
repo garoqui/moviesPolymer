@@ -1,0 +1,179 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="carrousel-app">
+  <template>
+    <style>
+      .container-carrousel {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: black;
+      }
+      .container-carrousel-images {
+        width: 100%;
+        height: 100%;
+
+      }
+
+      .container-carrousel img {
+        width: 100%;
+      }
+
+      .container-controls{
+        display: flex;
+        justify-content:center;
+        width: 100%;
+        position: absolute;
+        padding-top: 10px;
+
+        color: white;
+        top:180px;
+
+
+     
+
+      }
+      
+      .container-controls div{
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+        font-size: 50px;
+        color: white;
+
+      
+      }
+    </style>
+
+    <div class="container-carrousel">
+      <!-- <template is="dom-repeat" items="[[listMovies]]">
+        <div><img src="[[MOVIESIMGURL]][[item.backdrop_path]]"/></div>
+      </template> -->
+      <div class="container-carrousel-images">
+        <img src="[[MOVIESIMGURL]][[imgActual]]">
+        <div class="container-controls">
+          <div on-click="changeImage" data-args="next">&lt;</div>
+        <div on-click="changeImage" data-args="prev">&gt;</div>
+        </div>
+      
+      </div>
+
+      
+    </div>
+    
+    
+  </template>
+
+  <script>class CarrouselApp extends Polymer.Element {
+  constructor() {
+    super();
+    this.API_KEY = "9f7457883812f9b2f8e3a75fb1d4c021";
+    this.MOVIESPOPULARURL = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=`;
+    this.TVPOPULARURL = `https://api.themoviedb.org/3/tv/popular?api_key=${this.API_KEY}&language=en-US&page=`;
+    this.listMovies = [];
+    this.listSeries = [];
+  }
+
+  static get is() {
+    return "carrousel-app";
+  }
+
+  static get properties() {
+    return {
+      API_KEY: {
+        type: String,
+        value: ""
+      },
+      MOVIESPOPULARURL: {
+        type: String,
+        value: ``
+      },
+      TVPOPULARURL: {
+        type: String,
+        value: ``
+      },
+      MOVIESIMGURL: {
+        type: String,
+        value: "https://image.tmdb.org/t/p/original/"
+      },
+      listMovies: {
+        type: Array,
+
+        value() {
+          return [];
+        }
+
+      },
+      listSeries: {
+        type: Array,
+
+        value() {
+          return [];
+        }
+
+      },
+      posActual: {
+        type: Number,
+        value: 0
+      },
+      imgActual: {
+        type: String,
+        value: ""
+      }
+    };
+  }
+
+  async ready() {
+    super.ready();
+    let listMovies = await this.getMovies().then(res => res);
+    let listSeries = await this.getSeries().then(res => res);
+    this.imgActual = await this.listMovies[this.posActual].backdrop_path;
+    this.playImages("next");
+    await this.chargeCarrousel();
+  }
+
+  async getMovies() {
+    const RESU = await fetch(this.MOVIESPOPULARURL).then(res => res.json());
+    this.listMovies = await RESU.results;
+    return RESU;
+  }
+
+  async getSeries() {
+    const RESU = await fetch(this.TVPOPULARURL).then(res => res.json());
+    this.listSeries = await RESU.results;
+    return RESU;
+  }
+
+  chargeCarrousel() {
+    let groupList = [];
+    groupList = this.listMovies.concat(this.listSeries);
+    let resu = groupList.slice(0, 2);
+    let resu1 = groupList.reverse().slice(0, 2);
+  }
+
+  changeImage(e) {
+    if (this.posActual > 0 && this.posActual < 5) {
+      let direction = e.target.getAttribute("data-args");
+      direction === "next" ? this.posActual += 1 : this.posActual -= 1;
+      this.imgActual = this.listMovies[this.posActual].backdrop_path;
+    } else {
+      this.posActual = 1;
+    }
+  }
+
+  playImages(direction) {
+    const int = setInterval(() => {
+      if (this.posActual >= 0 && this.posActual < 5) {
+        this.imgActual = this.listMovies[this.posActual].backdrop_path;
+        this.posActual += 1;
+      } else {
+        this.posActual = 0;
+      }
+    }, 2000);
+  }
+
+}
+
+customElements.define(CarrouselApp.is, CarrouselApp);</script>
+</dom-module>

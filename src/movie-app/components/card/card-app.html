@@ -1,4 +1,7 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<!-- components -->
+<link rel="import" href="../ranking/ranking-app.html">
 
 <dom-module id="card-app">
     <template>
@@ -37,10 +40,13 @@
 
             <div class="container-card-footer">
                 <h5>[[movie.title]]</h5>
+                <ranking-app ranking = [[movie.vote_average]]></ranking-app>
+               
             </div>
         </div>
 
     </template>
+  
 
         <script>
 

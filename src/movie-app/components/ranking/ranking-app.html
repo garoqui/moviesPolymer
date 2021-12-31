@@ -1,0 +1,75 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html" />
+<link rel="import" href="/bower_components/iron-icon/iron-icon.html" />
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html" />
+
+<!-- <script src="/bower_components/iron-icon/iron-icon.js"></script> -->
+
+<link />
+
+<dom-module id="ranking-app">
+  <template>
+    <style>
+      .container-stars {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+      }
+      .container-number {
+        width: 5%;
+      }
+      .container-icons {
+        width: 80%;
+        text-align: right;
+      }
+      .orange {
+        color: orange;
+      }
+
+      .gray {
+        color: gray;
+      }
+    </style>
+
+    <div class="container-stars">
+      <div class="container-number">[[ranking]]</div>
+      <div class="container-icons">
+        <iron-icon icon="star" class$="[[getStatusStar(1)]]"></iron-icon>
+        <iron-icon icon="star" class$="[[getStatusStar(2)]]"></iron-icon>
+        <iron-icon icon="star" class$="[[getStatusStar(3)]]"></iron-icon>
+        <iron-icon icon="star" class$="[[getStatusStar(4)]]"></iron-icon>
+        <iron-icon icon="star" class$="[[getStatusStar(5)]]"></iron-icon>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    class RankingApp extends Polymer.Element {
+      static get is() {
+        return "ranking-app";
+      }
+
+      ready() {
+        super.ready();
+        this.getStatusStar();
+      }
+
+      static get properties() {
+        return {
+          ranking: {
+            type: String,
+            value: "",
+          },
+        };
+      }
+
+      getStatusStar(e) {
+        const numStars = Math.round(this.ranking / 2);
+        if (e <= numStars) {
+          return "orange";
+        }
+        return "gray";
+      }
+    }
+    customElements.define(RankingApp.is, RankingApp);
+  </script>
+</dom-module>
