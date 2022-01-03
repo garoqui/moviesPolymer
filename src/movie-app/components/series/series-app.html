@@ -3,17 +3,17 @@
 <!-- components -->
 <link rel="import" href="../card/card-app.html">
 
-<dom-module id="news-app">
+<dom-module id="series-app">
     <template >
         <style>
-            .container-news{
+            .container-series{
                 display: flex;
                 flex-direction: column;
                 height: 100%;
                 width:100%;          
             }
 
-            .container-news-cards{
+            .container-series-cards{
                 display: flex;
                 width: 100%;
                 justify-content: space-between;                
@@ -24,11 +24,11 @@
             }
         </style>
 
-        <div class="container-news">
-        <h1>Novedades</h1>
-        <div class="container-news-cards">
-            <template is="dom-repeat" items=[[listMovies]]>
-                <card-app movie=[[item]] isMovie="true" ></card-app>
+        <div class="container-series">
+        <h1>Series</h1>
+        <div class="container-series-cards">
+            <template is="dom-repeat" items=[[listSeries]]>
+                <card-app movie=[[item]]  kind="serie" ></card-app>
             </template>
             
         </div>
@@ -41,9 +41,9 @@
     </template>
 
     <script>
-        class NewsApp extends Polymer.Element{
+        class SeriesApp extends Polymer.Element{
 
-            static get is(){return "news-app"}
+            static get is(){return "series-app"}
 
             static get properties(){
                     return {
@@ -58,21 +58,16 @@
 
                        
 
-                        MOVIESPOPULARURL : {
+                        SERIESPOPULARURL : {
                             type : String,
                             value : ``
                         }, 
 
-                        listMovies : {
+                        listSeries : {
                             type : String,
                             value(){
                                 return []
                             }
-                        },
-
-                        prueba : {
-                            type: String,
-                            value : "b"
                         }
                     }
                 }
@@ -81,21 +76,21 @@
                     super()
                     this.image = ""
                     this.API_KEY = "9f7457883812f9b2f8e3a75fb1d4c021"
-                    this.MOVIESPOPULARURL = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=`;
+                    this.SERIESPOPULARURL = `https://api.themoviedb.org/3/tv/popular?api_key=${this.API_KEY}&language=en-US&page=`;
                 }
 
                 async ready(){
                     super.ready()
-                    this.listMovies = await this.fecthMovies()
+                    this.listSeries = await this.fecthSeries()
                     await console.log("Aca")
-                    await console.log(this.listMovies)
+                    await console.log(this.listSeries)
                    
                     
 
                 }
 
-                async fecthMovies(){
-                    const data = await fetch(this.MOVIESPOPULARURL).then(data => data.json())
+                async fecthSeries(){
+                    const data = await fetch(this.SERIESPOPULARURL).then(data => data.json())
                     console.log(data)
                     return data.results.slice(0,5)
                 }
@@ -103,7 +98,7 @@
 
         }
 
-        customElements.define(NewsApp.is, NewsApp)
+        customElements.define(SeriesApp.is, SeriesApp)
     </script>
     
 
