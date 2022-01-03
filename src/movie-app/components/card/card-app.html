@@ -1,4 +1,8 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymer/lib/elements/dom-if.html">
+
+<!-- components -->
+<link rel="import" href="../ranking/ranking-app.html">
 
 <dom-module id="card-app">
     <template>
@@ -31,16 +35,27 @@
         </style>
 
         <div class="container-card">
+            
             <div class="container-card-img">
                    <img src="[[MOVIESIMGURLW500]][[movie.poster_path]]"/>
             </div>
 
             <div class="container-card-footer">
-                <h5>[[movie.title]]</h5>
+                <template is="dom-if" if="isMovie">
+                    <h5>[[movie.title]]</h5>
+                </template>
+
+                <template is="dom-if" if="!isMovie">
+                    <h5>[[movie.name]]</h5>
+                </template>
+               
+                <ranking-app ranking = [[movie.vote_average]]></ranking-app>
+               
             </div>
         </div>
 
     </template>
+  
 
         <script>
 
@@ -56,6 +71,11 @@
                             value : {}
                         },
 
+                        isMovie : {
+                            type : Boolean,
+                            value : false
+                        },
+
                         MOVIESIMGURLW500 : {
                             type : String,
                             value : "https://image.tmdb.org/t/p/w500/"
@@ -66,6 +86,7 @@
                 ready(){
                     super.ready()
                     console.log(this.movie)
+                    console.log(this.kind)
                     
                 }
             }
