@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@polymer/app-route": "^0.9.3-pre.1"
+  }
+}

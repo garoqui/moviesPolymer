@@ -1,0 +1,62 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="/bower_components/app-route/app-location.html" />
+<link rel="import" href="/bower_components/app-route/app-route.html" />
+
+<link rel="import" href="/bower_components/iron-pages/iron-pages.html" />
+
+<!-- components -->
+<link rel="import" href="./results//results-app.html" />
+<link rel="import" href="../movie-app.html" />
+<link rel="import" href="../components/search/search-app.html" />
+
+
+<dom-module id="app-router">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+      route="{{route}}"
+      pattern="/:page"
+      data="{{data}}"
+      tail="{{tail}}"
+    >
+    </app-route>
+
+    <app-route
+      route="{{route}}"
+      pattern="/productos"
+      tail="{{searchTail}}"
+    ></app-route>
+
+    <iron-pages selected="[[data.page]]" attr-for-selected="page">
+      <movie-app page=""></movie-app>
+      <results-app page="results"></results-app>
+    </iron-pages>
+  </template>
+  <script>
+    class RouterApp extends Polymer.Element {
+      static get is() {
+        return "app-router";
+      }
+
+      static get properties() {
+        return {
+          route: {
+            type: Object,
+          },
+        };
+      }
+
+      mostrarData() {
+        console.log(this.route);
+        console.log(this.data);
+      }
+    }
+    customElements.define(RouterApp.is, RouterApp);
+  </script>
+</dom-module>

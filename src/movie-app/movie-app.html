@@ -4,6 +4,7 @@
 <link rel="import" href="./components/footer/footer-app.html" />
 <link rel="import" href="./components/nav-bar/menu/menu-app.html" />
 <link rel="import" href="./components/search/search-app.html" />
+<link rel="import" href="./components/app-router.html"/>
 
 <dom-module id="movie-app">
   <template>
@@ -75,16 +76,7 @@
         };
       }
 
-      connectedCallback() {
-        super.connectedCallback();
-        console.log("call back");
-        addEventListener("event", this.goResults);
-      }
 
-      goResults(e) {
-        console.log("reuslt");
-        console.log(e);
-      }
 
       handleSearch(e){
         console.log(e.detail)
