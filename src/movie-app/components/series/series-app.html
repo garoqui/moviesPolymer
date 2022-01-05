@@ -82,8 +82,7 @@
                 async ready(){
                     super.ready()
                     this.listSeries = await this.fecthSeries()
-                    await console.log("Aca")
-                    await console.log(this.listSeries)
+
                    
                     
 
@@ -91,7 +90,7 @@
 
                 async fecthSeries(){
                     const data = await fetch(this.SERIESPOPULARURL).then(data => data.json())
-                    console.log(data)
+
                     return data.results.slice(0,5)
                 }
 

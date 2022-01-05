@@ -1,50 +1,57 @@
-<link rel="import" href="/bower_components/polymer/polymer-element.html">
-<link rel="import" href="./components/nav-bar/navbar-app.html">
-<link rel="import" href="./components/body/body-app.html">
-<link rel="import" href="./components/footer/footer-app.html">
-<link rel="import" href="./components/nav-bar/menu/menu-app.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html" />
+<link rel="import" href="./components/nav-bar/navbar-app.html" />
+<link rel="import" href="./components/body/body-app.html" />
+<link rel="import" href="./components/footer/footer-app.html" />
+<link rel="import" href="./components/nav-bar/menu/menu-app.html" />
+<link rel="import" href="./components/search/search-app.html" />
+<link rel="import" href="./components/app-router.html"/>
 
 <dom-module id="movie-app">
   <template>
     <style>
-    .container-movie{
-     display: flex;
-     padding: 10px;
-     margin: auto;
-     min-height: 100vh;
-     flex-direction: column;
-   }
+      .container-movie {
+        display: flex;
+        padding: 10px;
+        margin: auto;
+        min-height: 100vh;
+        flex-direction: column;
+      }
 
-   navbar-app{
-     width:100%;
-     min-height: 5vh;
-     background-color: black;
-     color: white;
-    
-   }
+      navbar-app {
+        width: 100%;
+        min-height: 5vh;
+        background-color: black;
+        color: white;
+      }
 
-   body-app{
-     width:100%;
-     min-height: 60vh;
-     padding: 0px, 10px 0px, 10px;
-   }
+      search-app {
+        position: absolute;
+        margin-top: 100px;
+        right: 0;
+        padding-right: 100px;
+      }
 
-   footer-app{
-     width:100%;
-     min-height: 33vh;
-     background-color: black;
-     color: white;
-     display: flex;
-     justify-content: space-evenly;
-   }
+      body-app {
+        width: 100%;
+        min-height: 60vh;
+        padding: 0px, 10px 0px, 10px;
+      }
 
+      footer-app {
+        width: 100%;
+        min-height: 33vh;
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: space-evenly;
+      }
     </style>
     <div class="container-movie">
       <navbar-app></navbar-app>
+      <search-app ></search-app>
       <body-app></body-app>
       <footer-app></footer-app>
     </div>
-    
   </template>
 
   <script>
@@ -53,15 +60,24 @@
      * @polymer
      */
     class MovieApp extends Polymer.Element {
-      static get is() { return 'movie-app'; }
+
+      constructor(){
+        super()
+      }
+      static get is() {
+        return "movie-app";
+      }
       static get properties() {
         return {
           prop1: {
             type: String,
-            value: 'movie-app'
-          }
+            value: "movie-app",
+          },
         };
       }
+
+
+
     }
 
     window.customElements.define(MovieApp.is, MovieApp);

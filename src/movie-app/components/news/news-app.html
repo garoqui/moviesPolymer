@@ -87,8 +87,7 @@
                 async ready(){
                     super.ready()
                     this.listMovies = await this.fecthMovies()
-                    await console.log("Aca")
-                    await console.log(this.listMovies)
+
                    
                     
 
@@ -96,7 +95,7 @@
 
                 async fecthMovies(){
                     const data = await fetch(this.MOVIESPOPULARURL).then(data => data.json())
-                    console.log(data)
+
                     return data.results.slice(0,5)
                 }
 

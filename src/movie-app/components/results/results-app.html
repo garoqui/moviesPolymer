@@ -1,0 +1,108 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html" />
+
+<link rel="import" href="/bower_components/app-route/app-location.html" />
+
+<dom-module id="results-app">
+  <template>
+      <style>
+          .container-results{
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-evenly;
+          }
+
+          card-app{
+              width : 20%;
+              margin-left: 10px;
+          }
+      </style>
+    <app-location
+      route="{{route}}"
+      query-params="{{queryParams}}"
+    ></app-location>
+    <script></script>
+    <h1>Mi lista</h1>
+    <div class="container-results">
+      <template is="dom-repeat" items="[[listMulti]]">
+        <card-app movie="[[item]]" isMovie="true"></card-app>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    class ResultsApp extends Polymer.Element {
+      constructor() {
+        super();
+        this.MULTIURL = `https://api.themoviedb.org/3/search/multi?api_key=${this.API_KEY}&language=en-US&page=${this.page}&include_adult=false&query=`;
+      }
+      static get is() {
+        return "results-app";
+      }
+
+      static get properties() {
+        return {
+          API_KEY: {
+            type: String,
+            value: "9f7457883812f9b2f8e3a75fb1d4c021",
+          },
+
+          page: {
+            type: String,
+            value: "",
+          },
+
+          query: {
+            type: String,
+            value: "",
+          },
+
+          MULTIURL: {
+            type: String,
+            value: ``,
+          },
+
+          listMulti: {
+            type: String,
+            value() {
+              return [];
+            },
+          },
+
+          listSeries: {
+            type: String,
+            value() {
+              return [];
+            },
+          },
+
+          listMovies: {
+            type: String,
+            value() {
+              return [];
+            },
+          },
+        };
+      }
+
+      ready() {
+        super.ready();
+        addEventListener("message", this.setQuery.bind(this));
+      }
+
+      async setQuery(e) {
+        let word = await e.detail.word;
+        this.getRecords(word);
+      }
+
+      async getRecords(word) {
+        const resu = await fetch(this.MULTIURL + word).then((res) =>
+          res.json()
+        );
+        this.listMulti = resu.results;
+        console.log(this.listMulti);
+      }
+    }
+
+    customElements.define(ResultsApp.is, ResultsApp);
+  </script>
+</dom-module>

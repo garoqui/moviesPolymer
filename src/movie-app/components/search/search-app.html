@@ -1,0 +1,60 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html" />
+
+<dom-module id="search-app">
+  <template>
+    <style>
+      input {
+        border-radius: 20px;
+        padding: 10px;
+      }
+    </style>
+
+    <div>
+      <input
+        type="text"
+        placeholder="Buscar pelicula o Serie..."
+        value="{{searchText::change}}"
+      />
+
+    </div>
+  </template>
+
+  <script>
+    class SearchApp extends Polymer.Element {
+      constructor() {
+        super();
+      }
+
+      static get is() {
+        return "search-app";
+      }
+
+      static get properties() {
+        return {
+          searchText: {
+            type: String,
+            value: "",
+            observer: "handleSearch",
+          },
+
+          sendValue: {
+            type: String,
+          },
+        };
+      }
+
+      handleSearch() {
+        const event = new CustomEvent("message", {
+          detail: {
+            word: this.searchText,
+          },
+          bubbles: true,
+          composed: true,
+        });
+        this.dispatchEvent(event);
+      }
+    }
+
+    customElements.define(SearchApp.is, SearchApp);
+  </script>
+</dom-module>
