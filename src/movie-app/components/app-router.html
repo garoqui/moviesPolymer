@@ -18,7 +18,7 @@
       }
     </style>
 
-    <app-location route="{{route}}"></app-location>
+    <app-location route="{{route}}" query-params="{{queryParams}}"></app-location>
     <app-route
       route="{{route}}"
       pattern="/:page"
@@ -34,8 +34,8 @@
     ></app-route>
 
     <iron-pages selected="[[data.page]]" attr-for-selected="page">
-      <movie-app page=""></movie-app>
-      <results-app page="results"></results-app>
+      <movie-app page="" on-message="handleSearch"></movie-app>
+      <results-app page=results></results-app>
     </iron-pages>
   </template>
   <script>
@@ -52,9 +52,9 @@
         };
       }
 
-      mostrarData() {
-        console.log(this.route);
-        console.log(this.data);
+
+      handleSearch(e){
+        e.detail.word.length ? this.set('route.path', 'results') : false
       }
     }
     customElements.define(RouterApp.is, RouterApp);

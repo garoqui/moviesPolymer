@@ -48,7 +48,7 @@
     </style>
     <div class="container-movie">
       <navbar-app></navbar-app>
-      <search-app on-message="handleSearch"></search-app>
+      <search-app ></search-app>
       <body-app></body-app>
       <footer-app></footer-app>
     </div>
@@ -78,10 +78,6 @@
 
 
 
-      handleSearch(e){
-        console.log(e.detail)
-        console.log("mensaje")
-      }
     }
 
     window.customElements.define(MovieApp.is, MovieApp);
