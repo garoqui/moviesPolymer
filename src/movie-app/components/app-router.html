@@ -8,6 +8,7 @@
 <link rel="import" href="./results//results-app.html" />
 <link rel="import" href="../movie-app.html" />
 <link rel="import" href="../components/search/search-app.html" />
+<link rel="import" href="../components/detail/detail-app.html"/>
 
 
 <dom-module id="app-router">
@@ -36,6 +37,7 @@
     <iron-pages selected="[[data.page]]" attr-for-selected="page">
       <movie-app page="" on-message="handleSearch"></movie-app>
       <results-app page=results></results-app>
+      <detail-app page=detail></detail-app>
     </iron-pages>
   </template>
   <script>
